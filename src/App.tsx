@@ -110,7 +110,7 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-library-cream selection:bg-library-leather/20 text-library-green font-sans antialiased">
-      <div className="max-w-7xl mx-auto px-6 py-12">
+      <div className="max-w-7xl mx-auto px-6 py-10">
         <Header />
         
         <main className="flex flex-col lg:flex-row gap-8 items-center lg:items-start mt-8">
@@ -139,8 +139,8 @@ const App: React.FC = () => {
           />
         </main>
 
-        <footer className="mt-20 border-t border-library-green/5 pt-12 text-center text-library-green/30 text-xs">
-          <p>© {new Date().getFullYear()} eReader Cover Formatter. Crafted for bibliophiles.</p>
+        <footer className="mt-20 border-t border-library-green/5 pt-10 text-center text-library-green/30 text-xs">
+          <p>© {new Date().getFullYear()} | Coded by <a href="https://gerarddoncel.com" target="_blank" rel="noopener noreferrer" className="text-library-green/60 hover:text-library-green transition-colors underline">Gerard Doncel</a></p>
         </footer>
       </div>
     </div>
