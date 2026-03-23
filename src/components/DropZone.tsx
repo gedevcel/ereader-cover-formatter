@@ -5,9 +5,11 @@ interface DropZoneProps {
   onImageUpload: (file: File) => void;
   preview: string | null;
   onClear: () => void;
+  fileName: string | null;
+  currentResolution: string;
 }
 
-export const DropZone: React.FC<DropZoneProps> = ({ onImageUpload, preview, onClear }) => {
+export const DropZone: React.FC<DropZoneProps> = ({ onImageUpload, preview, onClear, fileName, currentResolution }) => {
   const [isDragging, setIsDragging] = useState(false);
 
   const handleDragOver = useCallback((e: React.DragEvent) => {
@@ -41,7 +43,7 @@ export const DropZone: React.FC<DropZoneProps> = ({ onImageUpload, preview, onCl
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
-        className={`relative aspect-3/4 sm:aspect-square lg:aspect-16/10 xl:aspect-video rounded-3xl border-2 border-dashed transition-all duration-300 flex flex-col items-center justify-center p-4 overflow-hidden
+        className={`relative aspect-3/4 sm:aspect-square lg:aspect-16/10 xl:aspect-video rounded-3xl border-2 border-dashed transition-all duration-300 flex flex-col items-center justify-center overflow-hidden
           ${preview ? 'border-library-leather/20 bg-library-sepia/20 shadow-inner' : 'border-library-green/30 hover:border-library-green/60 bg-library-sepia/30'}
           ${isDragging ? 'border-library-green border-solid bg-library-sepia/50' : ''}
         `}
@@ -50,17 +52,32 @@ export const DropZone: React.FC<DropZoneProps> = ({ onImageUpload, preview, onCl
           backgroundSize: '24px 24px'
         } : {}}
       >
-        {preview ? (
-          <div className="relative w-full h-full flex items-center justify-center group">
-            <div className="relative h-[98%] aspect-auto drop-shadow-[0_20px_60px_rgba(0,0,0,0.4)]">
-              <img src={preview} alt="Preview" className="h-full w-auto object-contain rounded-md border border-black/10" />
+        {preview && (
+          <div className="absolute top-0 left-0 right-0 h-15 bg-white/80 backdrop-blur-md border-b border-library-green/10 flex items-center justify-between px-6 z-30 shadow-sm animate-in fade-in slide-in-from-top duration-300">
+            <div className="flex items-center gap-3 overflow-hidden">
+              <span className="text-md font-bold font-serif text-library-green/80 truncate max-w-[200px] sm:max-w-md">
+                {fileName}
+              </span>
+              <div className="h-4 w-px bg-library-green/10" />
+              <span className="text-sm font-mono text-library-green/40 uppercase tracking-wider">
+                {currentResolution}
+              </span>
             </div>
             <button
               onClick={onClear}
-              className="absolute top-6 right-6 p-3 bg-library-leather text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity shadow-lg hover:scale-110 active:scale-95 z-20"
+              className="p-2 bg-library-leather/10 hover:bg-library-leather text-library-leather hover:text-white rounded-lg transition-all active:scale-90 hover:cursor-pointer"
+              title="Clear Image"
             >
-              <X size={24} />
+              <X size={18} />
             </button>
+          </div>
+        )}
+
+        {preview ? (
+          <div className="relative w-full h-full flex items-center justify-center pt-16 group">
+            <div className="relative h-[95%] aspect-auto drop-shadow-[0_20px_60px_rgba(0,0,0,0.4)]">
+              <img src={preview} alt="Preview" className="h-full w-auto object-contain rounded-md border border-black/10" />
+            </div>
           </div>
         ) : (
           <>

@@ -1,13 +1,9 @@
 import React from 'react';
-import { BookOpen } from 'lucide-react';
 
 export const Header: React.FC = () => {
   return (
     <header className="mb-12">
       <div className="flex items-center gap-3 mb-4">
-        <div className="p-2 bg-library-green text-library-cream rounded-lg shadow-lg">
-          <BookOpen size={32} />
-        </div>
         <h1 className="text-4xl font-bold tracking-tight text-library-green">
           eReader Cover Formatter
         </h1>

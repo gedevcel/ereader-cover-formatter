@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --font-serif: "Playfair Display", serif;
+  --font-serif: "Crimson Pro", serif;
   --font-sans: "Inter", sans-serif;
   
   --color-library-green: #1a3a3a;

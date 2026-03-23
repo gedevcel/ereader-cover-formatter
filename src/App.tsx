@@ -6,6 +6,7 @@ import type { FitMode, Resolution, Alignment } from './components/Sidebar';
 
 const App: React.FC = () => {
   const [image, setImage] = useState<File | null>(null);
+  const [fileName, setFileName] = useState<string | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const [processedPreview, setProcessedPreview] = useState<string | null>(null);
   const [originalRes, setOriginalRes] = useState<Resolution | null>(null);
@@ -16,6 +17,7 @@ const App: React.FC = () => {
 
   const handleImageUpload = (file: File) => {
     setImage(file);
+    setFileName(file.name);
     const reader = new FileReader();
     reader.onload = (e) => {
       const dataUrl = e.target?.result as string;
@@ -34,6 +36,7 @@ const App: React.FC = () => {
 
   const handleClear = () => {
     setImage(null);
+    setFileName(null);
     setPreview(null);
     setProcessedPreview(null);
     setOriginalRes(null);
@@ -115,7 +118,13 @@ const App: React.FC = () => {
             <DropZone 
               onImageUpload={handleImageUpload} 
               preview={processedPreview || preview} 
-              onClear={handleClear} 
+              onClear={handleClear}
+              fileName={fileName}
+              currentResolution={
+                resolution.label === 'Original' 
+                  ? `${resolution.width} x ${resolution.height}` 
+                  : resolution.label
+              }
             />
           </div>
           
