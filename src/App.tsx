@@ -120,11 +120,7 @@ const App: React.FC = () => {
               preview={processedPreview || preview} 
               onClear={handleClear}
               fileName={fileName}
-              currentResolution={
-                resolution.label === 'Original' 
-                  ? `${resolution.width} x ${resolution.height}` 
-                  : resolution.label
-              }
+              currentResolution={`${resolution.width} x ${resolution.height}`}
             />
           </div>
           

@@ -41,7 +41,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   hasImage
 }) => {
   return (
-    <aside className="w-80 bg-white/50 backdrop-blur-md border border-library-green/10 rounded-3xl p-6 shadow-xl flex flex-col gap-8 h-fit sticky top-8">
+    <aside className="w-full lg:w-80 bg-white/50 backdrop-blur-md border border-library-green/10 rounded-3xl p-6 shadow-xl flex flex-col gap-8 h-fit sticky top-8">
       <div className={!hasImage ? 'opacity-40 pointer-events-none' : ''}>
         <h3 className="text-xs font-bold uppercase tracking-widest text-library-green/40 mb-4 flex items-center gap-2">
           <Monitor size={14} /> Size and Resolution
@@ -50,69 +50,81 @@ export const Sidebar: React.FC<SidebarProps> = ({
           <button
             disabled={!hasImage}
             onClick={() => originalRes && onResChange(originalRes)}
-            className={`text-left px-3 py-2 rounded-xl transition-all border ${
+            className={`text-left px-4 py-3 rounded-xl transition-all border ${
               selectedRes.label === 'Original'
                 ? 'bg-library-green text-library-cream border-library-green shadow-md'
                 : 'bg-white/50 border-library-green/5 hover:border-library-green/20 text-library-green/70'
             }`}
           >
-            <div className="flex justify-between items-baseline gap-2">
-              <span className="text-xs font-bold font-serif whitespace-nowrap">Original</span>
+            <div className="flex justify-between items-center gap-4">
+              <span className="text-sm font-bold font-serif">Original Dimensions</span>
               {originalRes && (
-                <span className="text-[9px] opacity-40 font-mono">
-                  {originalRes.width}x{originalRes.height}
+                <span className="text-xs font-mono opacity-50">
+                  {originalRes.width} x {originalRes.height}
                 </span>
               )}
             </div>
           </button>
 
-          <div className="grid grid-cols-2 gap-2">
+          <div className="flex flex-col gap-2">
             {RESOLUTIONS.map((res, index) => (
               <button
                 key={index}
                 disabled={!hasImage}
                 onClick={() => onResChange(res)}
-                className={`text-left px-3 py-2 rounded-xl transition-all border ${
+                className={`text-left px-4 py-3 rounded-xl transition-all border ${
                   selectedRes.label === res.label
                     ? 'bg-library-green text-library-cream border-library-green shadow-md'
                     : 'bg-white/50 border-library-green/5 hover:border-library-green/20 text-library-green/70'
                 }`}
               >
-                <span className="block text-[11px] font-bold font-serif leading-tight">{res.label}</span>
-                <span className="text-[9px] opacity-60 font-mono">{res.width}x{res.height}</span>
+                <div className="flex justify-between items-center gap-4">
+                  <span className="text-sm font-bold font-serif leading-tight">{res.label}</span>
+                  <span className="text-[11px] font-mono opacity-60">
+                    {res.width} x {res.height}
+                  </span>
+                </div>
               </button>
             ))}
           </div>
 
-          <div className="pt-1">
+          <div className="pt-2">
             <button
               disabled={!hasImage}
-              onClick={() => onResChange({ ...selectedRes, label: 'Custom' })}
-              className={`w-full text-left px-3 py-2 rounded-xl transition-all border ${
+              onClick={() => onResChange({ 
+                width: originalRes?.width || 0, 
+                height: originalRes?.height || 0, 
+                label: 'Custom' 
+              })}
+              className={`w-full text-left px-4 py-3 rounded-xl transition-all border ${
                 selectedRes.label === 'Custom'
                   ? 'bg-library-green text-library-cream border-library-green shadow-md'
                   : 'bg-white/50 border-library-green/5 hover:border-library-green/20 text-library-green/70'
               }`}
             >
-              <span className="text-xs font-bold font-serif">Custom Size</span>
+              <span className="text-sm font-bold font-serif">Custom Resolution</span>
             </button>
 
             {selectedRes.label === 'Custom' && (
-              <div className="grid grid-cols-2 gap-2 mt-2 animate-in fade-in slide-in-from-top-1 duration-200 px-1">
-                <input
-                  type="number"
-                  placeholder="W"
-                  value={selectedRes.width}
-                  onChange={(e) => onResChange({ ...selectedRes, width: parseInt(e.target.value) || 0 })}
-                  className="w-full bg-white/50 border border-library-green/10 rounded-lg px-2 py-1.5 text-xs font-mono text-library-green outline-none focus:border-library-green/30"
-                />
-                <input
-                  type="number"
-                  placeholder="H"
-                  value={selectedRes.height}
-                  onChange={(e) => onResChange({ ...selectedRes, height: parseInt(e.target.value) || 0 })}
-                  className="w-full bg-white/50 border border-library-green/10 rounded-lg px-2 py-1.5 text-xs font-mono text-library-green outline-none focus:border-library-green/30"
-                />
+              <div className="grid grid-cols-2 gap-3 mt-3 animate-in fade-in slide-in-from-top-2 duration-300 px-1">
+                <div className="space-y-1">
+                  <label className="text-[10px] font-bold uppercase tracking-widest text-library-green/40 px-1">Width</label>
+                  <input
+                    type="number"
+                    value={selectedRes.width}
+                    onChange={(e) => onResChange({ ...selectedRes, width: parseInt(e.target.value) || 0 })}
+                    className="w-full bg-white/50 border border-library-green/10 rounded-lg px-3 py-2 text-sm font-mono text-library-green outline-none focus:border-library-green/30"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <label className="text-[10px] font-bold uppercase tracking-widest text-library-green/40 px-1">Height</label>
+                  <input
+                    type="number"
+                    value={selectedRes.height}
+                    onChange={(e) => onResChange({ ...selectedRes, height: parseInt(e.target.value) || 0 })}
+                    className="w-full bg-white/50 border border-library-green/10 rounded-lg px-3 py-2 text-sm font-mono text-library-green outline-none focus:border-library-green/30"
+                  />
+                </div>
               </div>
             )}
           </div>
