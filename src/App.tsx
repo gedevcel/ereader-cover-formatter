@@ -10,7 +10,7 @@ const App: React.FC = () => {
   const [processedPreview, setProcessedPreview] = useState<string | null>(null);
   const [originalRes, setOriginalRes] = useState<Resolution | null>(null);
   const [resolution, setResolution] = useState<Resolution>({ width: 0, height: 0, label: 'Original' });
-  const [fitMode, setFitMode] = useState<FitMode>('fill');
+  const [fitMode, setFitMode] = useState<FitMode>('fit');
   const [alignment, setAlignment] = useState<Alignment>('mc');
   const [bgColor, setBgColor] = useState('#ffffff');
 
@@ -38,6 +38,9 @@ const App: React.FC = () => {
     setProcessedPreview(null);
     setOriginalRes(null);
     setResolution({ width: 0, height: 0, label: 'Original' });
+    setFitMode('fit');
+    setAlignment('mc');
+    setBgColor('#ffffff');
   };
 
   useEffect(() => {
@@ -104,10 +107,10 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-library-cream selection:bg-library-leather/20 text-library-green font-sans antialiased">
-      <div className="max-w-[1600px] mx-auto px-8 py-12">
+      <div className="max-w-7xl mx-auto px-6 py-12">
         <Header />
         
-        <main className="flex flex-col xl:flex-row gap-12 items-center xl:items-start mt-8">
+        <main className="flex flex-col lg:flex-row gap-12 items-center lg:items-start mt-8">
           <div className="flex-1 w-full flex justify-center">
             <DropZone 
               onImageUpload={handleImageUpload} 

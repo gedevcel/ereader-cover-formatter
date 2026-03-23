@@ -41,9 +41,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
 }) => {
   return (
     <aside className="w-80 bg-white/50 backdrop-blur-md border border-library-green/10 rounded-3xl p-6 shadow-xl flex flex-col gap-8 h-fit sticky top-8">
-      <div>
+      <div className={!hasImage ? 'opacity-40 pointer-events-none' : ''}>
         <h3 className="text-xs font-bold uppercase tracking-widest text-library-green/40 mb-4 flex items-center gap-2">
-          <Monitor size={14} /> Size & Resolution
+          <Monitor size={14} /> Size and Resolution
         </h3>
         <div className="grid grid-cols-1 gap-2">
           <button
@@ -53,7 +53,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               selectedRes.label === 'Original'
                 ? 'bg-library-green text-library-cream border-library-green shadow-md'
                 : 'bg-white/50 border-library-green/5 hover:border-library-green/20 text-library-green/70'
-            } ${!hasImage ? 'opacity-30 cursor-not-allowed' : ''}`}
+            }`}
           >
             <div className="flex justify-between items-center w-full">
               <span className="block text-sm font-bold font-serif">Original</span>
@@ -69,6 +69,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           {RESOLUTIONS.map((res) => (
             <button
               key={res.label}
+              disabled={!hasImage}
               onClick={() => onResChange(res)}
               className={`text-left px-4 py-3 rounded-xl transition-all border ${
                 selectedRes.label === res.label
@@ -83,14 +84,15 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </div>
       </div>
 
-      <div>
+      <div className={!hasImage ? 'opacity-40 pointer-events-none' : ''}>
         <h3 className="text-xs font-bold uppercase tracking-widest text-library-green/40 mb-4 flex items-center gap-2">
           <Maximize2 size={14} /> Fit Mode
         </h3>
         <div className="flex bg-library-sepia/50 p-1 rounded-xl">
-          {(['fill', 'stretch', 'fit'] as FitMode[]).map((mode) => (
+          {(['fit', 'stretch', 'fill'] as FitMode[]).map((mode) => (
             <button
               key={mode}
+              disabled={!hasImage}
               onClick={() => onFitModeChange(mode)}
               className={`flex-1 py-2 px-3 rounded-lg capitalize text-sm font-bold transition-all ${
                 fitMode === mode
@@ -104,7 +106,25 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </div>
       </div>
 
-      <div>
+      {fitMode === 'fit' && (
+        <div className={!hasImage ? 'opacity-40 pointer-events-none' : ''}>
+          <h3 className="text-xs font-bold uppercase tracking-widest text-library-green/40 mb-4 flex items-center gap-2">
+            <Palette size={14} /> Background Fill
+          </h3>
+          <div className="flex items-center gap-4 p-3 bg-white/50 rounded-xl border border-library-green/5">
+            <input
+              type="color"
+              disabled={!hasImage}
+              value={bgColor}
+              onChange={(e) => onBgColorChange(e.target.value)}
+              className="w-10 h-10 rounded-lg cursor-pointer border-none bg-transparent"
+            />
+            <span className="text-sm font-mono text-library-green/60 uppercase">{bgColor}</span>
+          </div>
+        </div>
+      )}
+
+      <div className={!hasImage ? 'opacity-40 pointer-events-none' : ''}>
         <h3 className="text-xs font-bold uppercase tracking-widest text-library-green/40 mb-4 flex items-center gap-2">
           <Move size={14} /> Alignment
         </h3>
@@ -112,6 +132,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           {(['tl', 'tc', 'tr', 'ml', 'mc', 'mr', 'bl', 'bc', 'br'] as Alignment[]).map((pos) => (
             <button
               key={pos}
+              disabled={!hasImage}
               onClick={() => onAlignmentChange(pos)}
               className={`w-6 h-6 rounded-sm border transition-all ${
                 alignment === pos
@@ -123,22 +144,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </div>
       </div>
 
-      {fitMode === 'fit' && (
-        <div>
-          <h3 className="text-xs font-bold uppercase tracking-widest text-library-green/40 mb-4 flex items-center gap-2">
-            <Palette size={14} /> Background Fill
-          </h3>
-          <div className="flex items-center gap-4 p-3 bg-white/50 rounded-xl border border-library-green/5">
-            <input
-              type="color"
-              value={bgColor}
-              onChange={(e) => onBgColorChange(e.target.value)}
-              className="w-10 h-10 rounded-lg cursor-pointer border-none bg-transparent"
-            />
-            <span className="text-sm font-mono text-library-green/60 uppercase">{bgColor}</span>
-          </div>
-        </div>
-      )}
 
       <button
         disabled={!hasImage}

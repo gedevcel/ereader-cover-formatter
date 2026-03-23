@@ -36,7 +36,7 @@ export const DropZone: React.FC<DropZoneProps> = ({ onImageUpload, preview, onCl
   }, [onImageUpload]);
 
   return (
-    <div className="w-full max-w-6xl">
+    <div className="w-full">
       <div
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
