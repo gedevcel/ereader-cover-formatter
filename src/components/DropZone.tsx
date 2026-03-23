@@ -48,7 +48,7 @@ export const DropZone: React.FC<DropZoneProps> = ({ onImageUpload, preview, onCl
           ${isDragging ? 'border-library-green border-solid bg-library-sepia/50' : ''}
         `}
         style={preview ? {
-          backgroundImage: `radial-gradient(circle at 2px 2px, rgba(26, 58, 58, 0.05) 1px, transparent 0)`,
+          backgroundImage: `radial-gradient(circle at 2px 2px, rgba(26, 58, 58, 0.15) 1.5px, transparent 0)`,
           backgroundSize: '24px 24px'
         } : {}}
       >

@@ -113,7 +113,7 @@ const App: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6 py-12">
         <Header />
         
-        <main className="flex flex-col lg:flex-row gap-12 items-center lg:items-start mt-8">
+        <main className="flex flex-col lg:flex-row gap-8 items-center lg:items-start mt-8">
           <div className="flex-1 w-full flex justify-center">
             <DropZone 
               onImageUpload={handleImageUpload} 

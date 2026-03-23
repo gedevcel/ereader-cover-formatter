@@ -1,5 +1,5 @@
 import React from 'react';
-import { Maximize2, Move, Type, Palette, Monitor } from 'lucide-react';
+import { Maximize2, Move, Type, Palette, Monitor, Settings2 } from 'lucide-react';
 
 export type FitMode = 'fill' | 'stretch' | 'fit';
 export type Resolution = { width: number; height: number; label: string };
@@ -50,7 +50,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           <button
             disabled={!hasImage}
             onClick={() => originalRes && onResChange(originalRes)}
-            className={`text-left px-4 py-3 rounded-xl transition-all border ${
+            className={`text-left px-4 py-3 rounded-xl transition-all border cursor-pointer ${
               selectedRes.label === 'Original'
                 ? 'bg-library-green text-library-cream border-library-green shadow-md'
                 : 'bg-white/50 border-library-green/5 hover:border-library-green/20 text-library-green/70'
@@ -72,7 +72,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 key={index}
                 disabled={!hasImage}
                 onClick={() => onResChange(res)}
-                className={`text-left px-4 py-3 rounded-xl transition-all border ${
+                className={`text-left px-4 py-3 rounded-xl transition-all border cursor-pointer ${
                   selectedRes.label === res.label
                     ? 'bg-library-green text-library-cream border-library-green shadow-md'
                     : 'bg-white/50 border-library-green/5 hover:border-library-green/20 text-library-green/70'
@@ -88,7 +88,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             ))}
           </div>
 
-          <div className="pt-2">
+          <div className="">
             <button
               disabled={!hasImage}
               onClick={() => onResChange({ 
@@ -96,13 +96,14 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 height: originalRes?.height || 0, 
                 label: 'Custom' 
               })}
-              className={`w-full text-left px-4 py-3 rounded-xl transition-all border ${
+              className={`w-full text-left px-4 py-3 rounded-xl transition-all border cursor-pointer flex items-center justify-between ${
                 selectedRes.label === 'Custom'
                   ? 'bg-library-green text-library-cream border-library-green shadow-md'
                   : 'bg-white/50 border-library-green/5 hover:border-library-green/20 text-library-green/70'
               }`}
             >
               <span className="text-sm font-bold font-serif">Custom Resolution</span>
+              <Settings2 size={14} className="opacity-40" />
             </button>
 
             {selectedRes.label === 'Custom' && (
@@ -113,7 +114,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                     type="number"
                     value={selectedRes.width}
                     onChange={(e) => onResChange({ ...selectedRes, width: parseInt(e.target.value) || 0 })}
-                    className="w-full bg-white/50 border border-library-green/10 rounded-lg px-3 py-2 text-sm font-mono text-library-green outline-none focus:border-library-green/30"
+                    className="w-full bg-white/50 border border-library-green/10 rounded-lg px-3 py-2 text-sm font-mono text-library-green outline-none focus:border-library-green/30 cursor-text"
                   />
                 </div>
                 <div className="space-y-1">
@@ -122,7 +123,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                     type="number"
                     value={selectedRes.height}
                     onChange={(e) => onResChange({ ...selectedRes, height: parseInt(e.target.value) || 0 })}
-                    className="w-full bg-white/50 border border-library-green/10 rounded-lg px-3 py-2 text-sm font-mono text-library-green outline-none focus:border-library-green/30"
+                    className="w-full bg-white/50 border border-library-green/10 rounded-lg px-3 py-2 text-sm font-mono text-library-green outline-none focus:border-library-green/30 cursor-text"
                   />
                 </div>
               </div>
@@ -141,7 +142,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               key={mode}
               disabled={!hasImage}
               onClick={() => onFitModeChange(mode)}
-              className={`flex-1 py-2 px-3 rounded-lg capitalize text-sm font-bold transition-all ${
+              className={`flex-1 py-2 px-3 rounded-lg capitalize text-sm font-bold transition-all cursor-pointer ${
                 fitMode === mode
                   ? 'bg-white text-library-green shadow-sm'
                   : 'text-library-green/40 hover:text-library-green/60'
@@ -181,7 +182,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               key={pos}
               disabled={!hasImage}
               onClick={() => onAlignmentChange(pos)}
-              className={`w-6 h-6 rounded-sm border transition-all ${
+              className={`w-6 h-6 rounded-sm border transition-all cursor-pointer ${
                 alignment === pos
                   ? 'bg-library-green border-library-green'
                   : 'bg-white/50 border-library-green/10 hover:border-library-green/30'
@@ -197,7 +198,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         onClick={onDownload}
         className={`w-full py-4 rounded-2xl font-bold flex items-center justify-center gap-2 transition-all shadow-lg
           ${hasImage 
-            ? 'bg-library-leather text-white hover:bg-library-leather/90 active:scale-95' 
+            ? 'bg-library-leather text-white hover:bg-library-leather/90 active:scale-95 cursor-pointer' 
             : 'bg-library-green/10 text-library-green/30 cursor-not-allowed shadow-none'}
         `}
       >
