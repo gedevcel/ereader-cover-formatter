@@ -15,6 +15,7 @@ const RESOLUTIONS: Resolution[] = [
 interface SidebarProps {
   selectedRes: Resolution;
   onResChange: (res: Resolution) => void;
+  originalRes: Resolution | null;
   fitMode: FitMode;
   onFitModeChange: (mode: FitMode) => void;
   alignment: Alignment;
@@ -28,6 +29,7 @@ interface SidebarProps {
 export const Sidebar: React.FC<SidebarProps> = ({
   selectedRes,
   onResChange,
+  originalRes,
   fitMode,
   onFitModeChange,
   alignment,
@@ -44,6 +46,26 @@ export const Sidebar: React.FC<SidebarProps> = ({
           <Monitor size={14} /> Size & Resolution
         </h3>
         <div className="grid grid-cols-1 gap-2">
+          <button
+            disabled={!hasImage}
+            onClick={() => originalRes && onResChange(originalRes)}
+            className={`text-left px-4 py-3 rounded-xl transition-all border ${
+              selectedRes.label === 'Original'
+                ? 'bg-library-green text-library-cream border-library-green shadow-md'
+                : 'bg-white/50 border-library-green/5 hover:border-library-green/20 text-library-green/70'
+            } ${!hasImage ? 'opacity-30 cursor-not-allowed' : ''}`}
+          >
+            <div className="flex justify-between items-center w-full">
+              <span className="block text-sm font-bold font-serif">Original</span>
+              {originalRes && (
+                <span className="text-[10px] opacity-40 font-mono">
+                  {originalRes.width}x{originalRes.height}
+                </span>
+              )}
+            </div>
+            <span className="text-[10px] opacity-60 uppercase tracking-tighter">Source Dimensions</span>
+          </button>
+
           {RESOLUTIONS.map((res) => (
             <button
               key={res.label}

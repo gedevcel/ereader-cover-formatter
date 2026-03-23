@@ -8,7 +8,8 @@ const App: React.FC = () => {
   const [image, setImage] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const [processedPreview, setProcessedPreview] = useState<string | null>(null);
-  const [resolution, setResolution] = useState<Resolution>({ width: 1072, height: 1448, label: '1072 x 1448' });
+  const [originalRes, setOriginalRes] = useState<Resolution | null>(null);
+  const [resolution, setResolution] = useState<Resolution>({ width: 0, height: 0, label: 'Original' });
   const [fitMode, setFitMode] = useState<FitMode>('fill');
   const [alignment, setAlignment] = useState<Alignment>('mc');
   const [bgColor, setBgColor] = useState('#ffffff');
@@ -16,7 +17,18 @@ const App: React.FC = () => {
   const handleImageUpload = (file: File) => {
     setImage(file);
     const reader = new FileReader();
-    reader.onload = (e) => setPreview(e.target?.result as string);
+    reader.onload = (e) => {
+      const dataUrl = e.target?.result as string;
+      setPreview(dataUrl);
+      
+      const img = new Image();
+      img.src = dataUrl;
+      img.onload = () => {
+        const res = { width: img.width, height: img.height, label: 'Original' };
+        setOriginalRes(res);
+        setResolution(res);
+      };
+    };
     reader.readAsDataURL(file);
   };
 
@@ -24,6 +36,8 @@ const App: React.FC = () => {
     setImage(null);
     setPreview(null);
     setProcessedPreview(null);
+    setOriginalRes(null);
+    setResolution({ width: 0, height: 0, label: 'Original' });
   };
 
   useEffect(() => {
@@ -90,7 +104,7 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-library-cream selection:bg-library-leather/20 text-library-green font-sans antialiased">
-      <div className="max-w-[1400px] mx-auto px-8 py-12">
+      <div className="max-w-[1600px] mx-auto px-8 py-12">
         <Header />
         
         <main className="flex flex-col xl:flex-row gap-12 items-center xl:items-start mt-8">
@@ -105,6 +119,7 @@ const App: React.FC = () => {
           <Sidebar 
             selectedRes={resolution}
             onResChange={setResolution}
+            originalRes={originalRes}
             fitMode={fitMode}
             onFitModeChange={setFitMode}
             alignment={alignment}

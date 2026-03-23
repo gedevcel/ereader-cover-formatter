@@ -36,12 +36,12 @@ export const DropZone: React.FC<DropZoneProps> = ({ onImageUpload, preview, onCl
   }, [onImageUpload]);
 
   return (
-    <div className="w-full max-w-4xl">
+    <div className="w-full max-w-6xl">
       <div
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
-        className={`relative aspect-21/9 rounded-2xl border-2 border-dashed transition-all duration-300 flex flex-col items-center justify-center p-8 overflow-hidden
+        className={`relative aspect-3/4 sm:aspect-square lg:aspect-16/10 xl:aspect-video rounded-3xl border-2 border-dashed transition-all duration-300 flex flex-col items-center justify-center p-4 overflow-hidden
           ${preview ? 'border-library-leather/20 bg-library-sepia/20 shadow-inner' : 'border-library-green/30 hover:border-library-green/60 bg-library-sepia/30'}
           ${isDragging ? 'border-library-green border-solid bg-library-sepia/50' : ''}
         `}
@@ -52,14 +52,14 @@ export const DropZone: React.FC<DropZoneProps> = ({ onImageUpload, preview, onCl
       >
         {preview ? (
           <div className="relative w-full h-full flex items-center justify-center group">
-            <div className="relative h-[85%] aspect-auto drop-shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
-              <img src={preview} alt="Preview" className="h-full w-auto object-contain rounded-sm border border-black/5" />
+            <div className="relative h-[98%] aspect-auto drop-shadow-[0_20px_60px_rgba(0,0,0,0.4)]">
+              <img src={preview} alt="Preview" className="h-full w-auto object-contain rounded-md border border-black/10" />
             </div>
             <button
               onClick={onClear}
-              className="absolute top-4 right-4 p-2 bg-library-leather text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity shadow-lg hover:scale-110 active:scale-95 z-10"
+              className="absolute top-6 right-6 p-3 bg-library-leather text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity shadow-lg hover:scale-110 active:scale-95 z-20"
             >
-              <X size={20} />
+              <X size={24} />
             </button>
           </div>
         ) : (
