@@ -2,7 +2,6 @@ import React from "react";
 import {
   Maximize2,
   Move,
-  Type,
   Palette,
   Monitor,
   Settings2,

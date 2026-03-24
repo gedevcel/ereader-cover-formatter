@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Header } from './components/Header';
-import { DropZone } from './components/DropZone';
-import { Sidebar } from './components/Sidebar';
-import type { FitMode, Resolution, Alignment } from './components/Sidebar';
+import React, { useState, useEffect } from "react";
+import { Header } from "./components/Header";
+import { DropZone } from "./components/DropZone";
+import { Sidebar } from "./components/Sidebar";
+import type { FitMode, Resolution, Alignment } from "./components/Sidebar";
 
 const App: React.FC = () => {
   const [image, setImage] = useState<File | null>(null);
@@ -10,10 +10,14 @@ const App: React.FC = () => {
   const [preview, setPreview] = useState<string | null>(null);
   const [processedPreview, setProcessedPreview] = useState<string | null>(null);
   const [originalRes, setOriginalRes] = useState<Resolution | null>(null);
-  const [resolution, setResolution] = useState<Resolution>({ width: 0, height: 0, label: 'Original' });
-  const [fitMode, setFitMode] = useState<FitMode>('fit');
-  const [alignment, setAlignment] = useState<Alignment>('mc');
-  const [bgColor, setBgColor] = useState('#ffffff');
+  const [resolution, setResolution] = useState<Resolution>({
+    width: 0,
+    height: 0,
+    label: "Original",
+  });
+  const [fitMode, setFitMode] = useState<FitMode>("fit");
+  const [alignment, setAlignment] = useState<Alignment>("mc");
+  const [bgColor, setBgColor] = useState("#ffffff");
 
   const handleImageUpload = (file: File) => {
     setImage(file);
@@ -22,11 +26,11 @@ const App: React.FC = () => {
     reader.onload = (e) => {
       const dataUrl = e.target?.result as string;
       setPreview(dataUrl);
-      
+
       const img = new Image();
       img.src = dataUrl;
       img.onload = () => {
-        const res = { width: img.width, height: img.height, label: 'Original' };
+        const res = { width: img.width, height: img.height, label: "Original" };
         setOriginalRes(res);
         setResolution(res);
       };
@@ -40,10 +44,10 @@ const App: React.FC = () => {
     setPreview(null);
     setProcessedPreview(null);
     setOriginalRes(null);
-    setResolution({ width: 0, height: 0, label: 'Original' });
-    setFitMode('fit');
-    setAlignment('mc');
-    setBgColor('#ffffff');
+    setResolution({ width: 0, height: 0, label: "Original" });
+    setFitMode("fit");
+    setAlignment("mc");
+    setBgColor("#ffffff");
   };
 
   useEffect(() => {
@@ -55,10 +59,10 @@ const App: React.FC = () => {
     const img = new Image();
     img.src = preview;
     img.onload = () => {
-      const canvas = document.createElement('canvas');
+      const canvas = document.createElement("canvas");
       canvas.width = resolution.width;
       canvas.height = resolution.height;
-      const ctx = canvas.getContext('2d');
+      const ctx = canvas.getContext("2d");
       if (!ctx) return;
 
       // Draw background
@@ -70,10 +74,10 @@ const App: React.FC = () => {
 
       let drawW, drawH;
 
-      if (fitMode === 'stretch') {
+      if (fitMode === "stretch") {
         drawW = resolution.width;
         drawH = resolution.height;
-      } else if (fitMode === 'fill') {
+      } else if (fitMode === "fill") {
         if (ratio > targetRatio) {
           drawH = resolution.height;
           drawW = drawH * ratio;
@@ -81,7 +85,8 @@ const App: React.FC = () => {
           drawW = resolution.width;
           drawH = drawW / ratio;
         }
-      } else { // fit
+      } else {
+        // fit
         if (ratio > targetRatio) {
           drawW = resolution.width;
           drawH = drawW / ratio;
@@ -92,18 +97,26 @@ const App: React.FC = () => {
       }
 
       // Calculate position based on alignment
-      const alignX = alignment.endsWith('l') ? 0 : alignment.endsWith('r') ? resolution.width - drawW : (resolution.width - drawW) / 2;
-      const alignY = alignment.startsWith('t') ? 0 : alignment.startsWith('b') ? resolution.height - drawH : (resolution.height - drawH) / 2;
+      const alignX = alignment.endsWith("l")
+        ? 0
+        : alignment.endsWith("r")
+          ? resolution.width - drawW
+          : (resolution.width - drawW) / 2;
+      const alignY = alignment.startsWith("t")
+        ? 0
+        : alignment.startsWith("b")
+          ? resolution.height - drawH
+          : (resolution.height - drawH) / 2;
 
       ctx.drawImage(img, alignX, alignY, drawW, drawH);
-      setProcessedPreview(canvas.toDataURL('image/jpeg', 0.8));
+      setProcessedPreview(canvas.toDataURL("image/jpeg", 0.8));
     };
   }, [preview, resolution, fitMode, alignment, bgColor]);
 
   const processAndDownload = () => {
     if (!processedPreview) return;
-    const link = document.createElement('a');
-    link.download = `cover-${resolution.label.replace(/\s/g, '')}.jpg`;
+    const link = document.createElement("a");
+    link.download = `cover-${resolution.label.replace(/\s/g, "")}.jpg`;
     link.href = processedPreview;
     link.click();
   };
@@ -112,19 +125,19 @@ const App: React.FC = () => {
     <div className="min-h-screen bg-library-cream selection:bg-library-leather/20 text-library-green font-sans antialiased">
       <div className="max-w-7xl mx-auto px-6 py-10">
         <Header />
-        
+
         <main className="flex flex-col lg:flex-row gap-8 items-center lg:items-start mt-8">
           <div className="flex-1 w-full flex justify-center">
-            <DropZone 
-              onImageUpload={handleImageUpload} 
-              preview={processedPreview || preview} 
+            <DropZone
+              onImageUpload={handleImageUpload}
+              preview={processedPreview || preview}
               onClear={handleClear}
               fileName={fileName}
               currentResolution={`${resolution.width} x ${resolution.height}`}
             />
           </div>
-          
-          <Sidebar 
+
+          <Sidebar
             selectedRes={resolution}
             onResChange={setResolution}
             originalRes={originalRes}
@@ -140,7 +153,17 @@ const App: React.FC = () => {
         </main>
 
         <footer className="mt-20 border-t border-library-green/5 pt-10 text-center text-library-green/30 text-xs">
-          <p>© {new Date().getFullYear()} | Coded by <a href="https://gerarddoncel.com" target="_blank" rel="noopener noreferrer" className="text-library-green/60 hover:text-library-green transition-colors underline">Gerard Doncel</a></p>
+          <p>
+            © {new Date().getFullYear()} | Coded by{" "}
+            <a
+              href="https://gerarddoncel.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-library-green/60 hover:text-library-green transition-colors underline"
+            >
+              Gerard Doncel
+            </a>
+          </p>
         </footer>
       </div>
     </div>
