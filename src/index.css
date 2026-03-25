@@ -3,7 +3,7 @@
 @theme {
   --font-serif: "Crimson Pro", serif;
   --font-sans: "Inter", sans-serif;
-  
+
   --color-library-green: #1a3a3a;
   --color-library-cream: #fdfcf0;
   --color-library-sepia: #f4ecd8;
@@ -14,6 +14,11 @@ body {
   @apply bg-library-cream text-library-green font-sans antialiased;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   @apply font-serif;
 }

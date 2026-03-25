@@ -64,7 +64,7 @@ export const Header: React.FC = () => {
             onClick={() => setShowInstructions(false)}
           />
           <div className="relative w-full max-w-2xl bg-library-cream border border-library-green/10 rounded-sm shadow-2xl overflow-hidden animate-in zoom-in-95 fade-in duration-300">
-          <div className="bg-library-sepia px-5 py-4 sm:px-8 sm:py-6 flex items-center justify-between border-b border-library-green/5">
+            <div className="bg-library-sepia px-5 py-4 sm:px-8 sm:py-6 flex items-center justify-between border-b border-library-green/5">
               <div className="flex items-center gap-3">
                 <Book className="text-library-leather" size={24} />
                 <h2 className="text-xl font-black font-serif text-library-green">
