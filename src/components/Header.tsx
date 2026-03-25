@@ -38,8 +38,6 @@ export const Header: React.FC = () => {
 
       <div className="space-y-4">
         <p className="text-lg text-library-green/80 max-w-2xl leading-relaxed italic">
-          "Every book deserves a perfectly tailored cover."
-          <br />
           <span className="text-sm not-italic opacity-60 font-sans">
             Format, resize, and optimize your images for the perfect reading
             experience.

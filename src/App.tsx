@@ -56,6 +56,11 @@ const App: React.FC = () => {
       return;
     }
 
+    if (resolution.width <= 0 || resolution.height <= 0) {
+      setProcessedPreview(null);
+      return;
+    }
+
     const img = new Image();
     img.src = preview;
     img.onload = () => {

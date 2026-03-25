@@ -73,7 +73,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             }`}
           >
             <div className="flex justify-between items-center gap-4">
-              <span className="text-sm font-semibold font-serif">
+              <span className="text-xs font-semibold font-sans">
                 Original Dimensions
               </span>
               {originalRes && (
@@ -97,7 +97,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 }`}
               >
                 <div className="flex justify-between items-center gap-4">
-                  <span className="text-sm font-semibold font-serif leading-tight">
+                  <span className="text-xs font-semibold font-sans leading-tight">
                     {res.label}
                   </span>
                   <span className="text-[11px] font-mono opacity-60">
@@ -124,7 +124,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   : "bg-white/50 border-library-green/5 hover:border-library-green/20 text-library-green/70"
               }`}
             >
-              <span className="text-sm font-semibold font-serif">
+              <span className="text-xs font-semibold font-sans">
                 Custom Resolution
               </span>
               <Settings2 size={14} className="opacity-40" />
@@ -138,13 +138,16 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   </label>
                   <input
                     type="number"
-                    value={selectedRes.width}
-                    onChange={(e) =>
+                    value={selectedRes.width || ""}
+                    onChange={(e) => {
+                      const val = parseInt(e.target.value) || 0;
                       onResChange({
                         ...selectedRes,
-                        width: parseInt(e.target.value) || 0,
-                      })
-                    }
+                        width: Math.min(val, 5000),
+                      });
+                    }}
+                    max={5000}
+                    min={0}
                     className="w-full bg-white/50 border border-library-green/10 rounded-lg px-3 py-2 text-sm font-mono text-library-green outline-none focus:border-library-green/30 cursor-text"
                   />
                 </div>
@@ -154,13 +157,16 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   </label>
                   <input
                     type="number"
-                    value={selectedRes.height}
-                    onChange={(e) =>
+                    value={selectedRes.height || ""}
+                    onChange={(e) => {
+                      const val = parseInt(e.target.value) || 0;
                       onResChange({
                         ...selectedRes,
-                        height: parseInt(e.target.value) || 0,
-                      })
-                    }
+                        height: Math.min(val, 5000),
+                      });
+                    }}
+                    max={5000}
+                    min={0}
                     className="w-full bg-white/50 border border-library-green/10 rounded-lg px-3 py-2 text-sm font-mono text-library-green outline-none focus:border-library-green/30 cursor-text"
                   />
                 </div>
