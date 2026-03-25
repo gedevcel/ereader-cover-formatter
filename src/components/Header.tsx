@@ -29,7 +29,7 @@ export const Header: React.FC = () => {
 
         <button
           onClick={() => setShowInstructions(true)}
-          className="hidden sm:flex items-center gap-2 px-5 py-3 bg-library-leather text-white rounded-xl font-bold text-sm transition-all shadow-md hover:bg-library-leather/90 active:scale-95 cursor-pointer shrink-0"
+          className="hidden sm:flex items-center gap-2 px-5 py-3 bg-library-leather text-white rounded-sm font-bold text-sm transition-all shadow-md hover:bg-library-leather/90 active:scale-95 cursor-pointer shrink-0"
         >
           <HelpCircle size={18} />
           Instructions
@@ -46,7 +46,7 @@ export const Header: React.FC = () => {
 
         <button
           onClick={() => setShowInstructions(true)}
-          className="flex sm:hidden items-center justify-center gap-2 px-5 py-3 bg-library-leather text-white rounded-xl font-bold text-sm transition-all shadow-md hover:bg-library-leather/90 active:scale-95 cursor-pointer w-full"
+          className="flex sm:hidden items-center justify-center gap-2 px-5 py-3 bg-library-leather text-white rounded-sm font-bold text-sm transition-all shadow-md hover:bg-library-leather/90 active:scale-95 cursor-pointer w-full"
         >
           <HelpCircle size={18} />
           Instructions
@@ -59,8 +59,8 @@ export const Header: React.FC = () => {
             className="absolute inset-0 bg-library-green/40 backdrop-blur-sm animate-in fade-in duration-300"
             onClick={() => setShowInstructions(false)}
           />
-          <div className="relative w-full max-w-2xl bg-library-cream border border-library-green/10 rounded-3xl shadow-2xl overflow-hidden animate-in zoom-in-95 fade-in duration-300">
-            <div className="bg-library-sepia px-8 py-6 flex items-center justify-between border-b border-library-green/5">
+          <div className="relative w-full max-w-2xl bg-library-cream border border-library-green/10 rounded-sm shadow-2xl overflow-hidden animate-in zoom-in-95 fade-in duration-300">
+          <div className="bg-library-sepia px-5 py-4 sm:px-8 sm:py-6 flex items-center justify-between border-b border-library-green/5">
               <div className="flex items-center gap-3">
                 <Book className="text-library-leather" size={24} />
                 <h2 className="text-xl font-black font-serif text-library-green">
@@ -69,14 +69,14 @@ export const Header: React.FC = () => {
               </div>
               <button
                 onClick={() => setShowInstructions(false)}
-                className="p-2 hover:bg-library-leather/10 rounded-lg text-library-green/40 hover:text-library-leather transition-all cursor-pointer"
+                className="p-2 hover:bg-library-leather/10 rounded-sm text-library-green/40 hover:text-library-leather transition-all cursor-pointer"
               >
                 <X size={24} />
               </button>
             </div>
 
-            <div className="px-8 py-8 overflow-y-auto max-h-[70vh]">
-              <div className="space-y-8">
+            <div className="px-5 py-6 sm:px-8 sm:py-8 overflow-y-auto max-h-[75vh]">
+              <div className="space-y-6 sm:space-y-8">
                 <section>
                   <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-library-leather/60 mb-4 px-1">
                     How to use this tool
@@ -90,9 +90,9 @@ export const Header: React.FC = () => {
                     ].map((step, i) => (
                       <div
                         key={i}
-                        className="flex gap-4 p-4 bg-white/40 rounded-2xl border border-library-green/5"
+                        className="flex gap-3 sm:gap-4 p-3 sm:p-4 bg-white/40 rounded-sm border border-library-green/5"
                       >
-                        <span className="shrink-0 w-6 h-6 rounded-full bg-library-leather text-white text-[10px] font-bold flex items-center justify-center">
+                        <span className="shrink-0 w-6 h-6 rounded-sm bg-library-leather text-white text-[10px] font-bold flex items-center justify-center">
                           {i + 1}
                         </span>
                         <p className="text-sm font-medium leading-relaxed text-library-green/80">
@@ -103,7 +103,7 @@ export const Header: React.FC = () => {
                   </div>
                 </section>
 
-                <section className="bg-library-leather/5 p-6 rounded-2xl border border-library-leather/10">
+                <section className="bg-library-leather/5 p-4 sm:p-6 rounded-sm border border-library-leather/10">
                   <div className="flex items-center gap-3 mb-4">
                     <CheckCircle2 size={20} className="text-library-leather" />
                     <h3 className="text-md font-semibold text-library-green">
@@ -140,10 +140,10 @@ export const Header: React.FC = () => {
               </div>
             </div>
 
-            <div className="bg-white/40 px-8 py-5 flex justify-end gap-3 border-t border-library-green/5">
+            <div className="bg-white/40 px-5 py-4 sm:px-8 sm:py-5 flex justify-end gap-3 border-t border-library-green/5">
               <button
                 onClick={() => setShowInstructions(false)}
-                className="px-6 py-2 bg-library-leather text-white rounded-xl font-bold text-sm shadow-lg hover:bg-library-leather/90 active:scale-95 transition-all cursor-pointer"
+                className="px-6 py-2 bg-library-leather text-white rounded-sm font-bold text-sm shadow-lg hover:bg-library-leather/90 active:scale-95 transition-all cursor-pointer"
               >
                 Got it
               </button>

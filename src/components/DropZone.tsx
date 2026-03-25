@@ -55,7 +55,7 @@ export const DropZone: React.FC<DropZoneProps> = ({
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
-        className={`relative aspect-3/4 sm:aspect-square lg:aspect-16/10 xl:aspect-video rounded-3xl border-2 border-dashed transition-all duration-300 flex flex-col items-center justify-center overflow-hidden
+        className={`relative aspect-3/4 sm:aspect-square lg:aspect-16/10 xl:aspect-video rounded border-2 border-dashed transition-all duration-300 flex flex-col items-center justify-center overflow-hidden
           ${preview ? "border-library-leather/20 bg-library-sepia/20 shadow-inner" : "border-library-green/30 hover:border-library-green/60 bg-library-sepia/30"}
           ${isDragging ? "border-library-green border-solid bg-library-sepia/50" : ""}
         `}
@@ -81,7 +81,7 @@ export const DropZone: React.FC<DropZoneProps> = ({
             </div>
             <button
               onClick={onClear}
-              className="p-2 bg-red-900/10 hover:bg-red-900 text-red-900 hover:text-white rounded-lg transition-all active:scale-90 hover:cursor-pointer"
+              className="p-2 bg-red-900/10 hover:bg-red-900 text-red-900 hover:text-white rounded-sm transition-all active:scale-90 hover:cursor-pointer"
               title="Clear Image"
             >
               <X size={18} />
@@ -95,13 +95,13 @@ export const DropZone: React.FC<DropZoneProps> = ({
               <img
                 src={preview}
                 alt="Preview"
-                className="h-full w-auto object-contain rounded-md border border-black/10"
+                className="h-full w-auto object-contain rounded-sm border border-black/10"
               />
             </div>
           </div>
         ) : (
           <>
-            <div className="p-6 rounded-full bg-library-sepia text-library-leather mb-6 shadow-sm">
+            <div className="p-6 rounded-sm bg-library-sepia text-library-leather mb-6 shadow-sm">
               <Upload
                 size={48}
                 className={isDragging ? "animate-bounce" : ""}
@@ -115,7 +115,7 @@ export const DropZone: React.FC<DropZoneProps> = ({
                 PNG, JPG, WebP (Max 10MB)
               </p>
             </div>
-            <label className="mt-8 px-8 py-3 bg-library-green text-library-cream rounded-full font-bold cursor-pointer hover:bg-library-green/90 transition-colors shadow-lg active:scale-95">
+            <label className="mt-8 px-8 py-3 bg-library-green text-library-cream rounded-sm font-bold cursor-pointer hover:bg-library-green/90 transition-colors shadow-lg active:scale-95">
               Browse Files
               <input
                 type="file"

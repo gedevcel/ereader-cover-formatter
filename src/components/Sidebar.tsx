@@ -57,7 +57,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   hasImage,
 }) => {
   return (
-    <aside className="w-full lg:w-80 bg-white/50 backdrop-blur-md border border-library-green/10 rounded-3xl p-6 shadow-xl flex flex-col gap-8 h-fit sticky top-8">
+    <aside className="w-full lg:w-80 bg-white/50 backdrop-blur-md border border-library-green/10 rounded p-6 shadow-xl flex flex-col gap-8 h-fit sticky top-8">
       <div className={!hasImage ? "opacity-40 pointer-events-none" : ""}>
         <h3 className="text-xs font-bold uppercase tracking-widest text-library-green/40 mb-4 flex items-center gap-2">
           <Monitor size={14} /> Size and Resolution
@@ -66,7 +66,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           <button
             disabled={!hasImage}
             onClick={() => originalRes && onResChange(originalRes)}
-            className={`text-left px-4 py-3 rounded-xl transition-all border cursor-pointer ${
+            className={`text-left px-4 py-3 rounded-sm transition-all border cursor-pointer ${
               selectedRes.label === "Original"
                 ? "bg-library-green text-library-cream border-library-green shadow-md"
                 : "bg-white/50 border-library-green/5 hover:border-library-green/20 text-library-green/70"
@@ -90,7 +90,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 key={index}
                 disabled={!hasImage}
                 onClick={() => onResChange(res)}
-                className={`text-left px-4 py-3 rounded-xl transition-all border cursor-pointer ${
+                className={`text-left px-4 py-3 rounded-sm transition-all border cursor-pointer ${
                   selectedRes.label === res.label
                     ? "bg-library-green text-library-cream border-library-green shadow-md"
                     : "bg-white/50 border-library-green/5 hover:border-library-green/20 text-library-green/70"
@@ -118,7 +118,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   label: "Custom",
                 })
               }
-              className={`w-full text-left px-4 py-3 rounded-xl transition-all border cursor-pointer flex items-center justify-between ${
+              className={`w-full text-left px-4 py-3 rounded-sm transition-all border cursor-pointer flex items-center justify-between ${
                 selectedRes.label === "Custom"
                   ? "bg-library-green text-library-cream border-library-green shadow-md"
                   : "bg-white/50 border-library-green/5 hover:border-library-green/20 text-library-green/70"
@@ -148,7 +148,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                     }}
                     max={5000}
                     min={0}
-                    className="w-full bg-white/50 border border-library-green/10 rounded-lg px-3 py-2 text-sm font-mono text-library-green outline-none focus:border-library-green/30 cursor-text"
+                    className="w-full bg-white/50 border border-library-green/10 rounded-sm px-3 py-2 text-sm font-mono text-library-green outline-none focus:border-library-green/30 cursor-text"
                   />
                 </div>
                 <div className="space-y-1">
@@ -167,7 +167,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                     }}
                     max={5000}
                     min={0}
-                    className="w-full bg-white/50 border border-library-green/10 rounded-lg px-3 py-2 text-sm font-mono text-library-green outline-none focus:border-library-green/30 cursor-text"
+                    className="w-full bg-white/50 border border-library-green/10 rounded-sm px-3 py-2 text-sm font-mono text-library-green outline-none focus:border-library-green/30 cursor-text"
                   />
                 </div>
               </div>
@@ -180,13 +180,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
         <h3 className="text-xs font-bold uppercase tracking-widest text-library-green/40 mb-4 flex items-center gap-2">
           <Maximize2 size={14} /> Fit Mode
         </h3>
-        <div className="flex bg-library-sepia/50 p-1 rounded-xl">
+        <div className="flex bg-library-sepia/50 p-1 rounded-sm">
           {(["fit", "stretch", "fill"] as FitMode[]).map((mode) => (
             <button
               key={mode}
               disabled={!hasImage}
               onClick={() => onFitModeChange(mode)}
-              className={`flex-1 py-2 px-3 rounded-lg capitalize text-sm font-bold transition-all cursor-pointer ${
+              className={`flex-1 py-2 px-3 rounded-sm capitalize text-sm font-bold transition-all cursor-pointer ${
                 fitMode === mode
                   ? "bg-white text-library-green shadow-sm"
                   : "text-library-green/40 hover:text-library-green/60"
@@ -203,8 +203,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
           <h3 className="text-xs font-bold uppercase tracking-widest text-library-green/40 mb-4 flex items-center gap-2">
             <Palette size={14} /> Background Fill
           </h3>
-          <div className="flex items-center gap-4 p-3 bg-white/50 rounded-xl border border-library-green/5">
-            <div className="relative w-8 h-8 overflow-hidden rounded-full border border-library-green/10">
+          <div className="flex items-center gap-4 p-3 bg-white/50 rounded-sm border border-library-green/5">
+            <div className="relative w-8 h-8 overflow-hidden rounded-sm border border-library-green/10">
               <input
                 type="color"
                 disabled={!hasImage}
@@ -224,7 +224,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         <h3 className="text-xs font-bold uppercase tracking-widest text-library-green/40 mb-4 flex items-center gap-2">
           <Move size={14} /> Alignment
         </h3>
-        <div className="grid grid-cols-3 gap-1 w-24 bg-library-sepia/30 p-1 rounded-lg">
+        <div className="grid grid-cols-3 gap-1 w-24 bg-library-sepia/30 p-1 rounded-sm">
           {(
             [
               "tl",
@@ -255,7 +255,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       <button
         disabled={!hasImage}
         onClick={onDownload}
-        className={`w-full py-4 rounded-2xl font-bold flex items-center justify-center gap-2 transition-all shadow-lg
+        className={`w-full py-4 rounded-sm font-bold flex items-center justify-center gap-2 transition-all shadow-lg
           ${
             hasImage
               ? "bg-library-leather text-white hover:bg-library-leather/90 active:scale-95 cursor-pointer"
