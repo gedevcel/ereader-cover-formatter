@@ -21,7 +21,7 @@ export const Header: React.FC = () => {
   }, [showInstructions]);
 
   return (
-    <header className="mb-12 relative flex flex-col gap-6">
+    <header className="mb-8 relative flex flex-col gap-6">
       <div className="flex items-center justify-between gap-4">
         <h1 className="text-4xl font-bold tracking-tight text-library-green">
           eReader Cover Formatter
@@ -36,13 +36,17 @@ export const Header: React.FC = () => {
         </button>
       </div>
 
-      <div className="space-y-4">
-        <p className="text-lg text-library-green/80 max-w-2xl leading-relaxed italic">
-          <span className="text-sm not-italic opacity-60 font-sans">
-            Format, resize, and optimize your images for the perfect reading
-            experience.
-          </span>
-        </p>
+      <div className="space-y-6 sm:space-y-2">
+        <div className="max-w-2xl space-y-2">
+          <p className="text-lg text-library-green/80 leading-relaxed italic font-serif">
+            Format and optimize your images to fit perfectly the screen of your
+            favorite eReader.
+          </p>
+          <p className="text-sm text-library-green/40 font-sans">
+            Check the instructions to see how to add your new covers to your
+            electronic books.
+          </p>
+        </div>
 
         <button
           onClick={() => setShowInstructions(true)}
