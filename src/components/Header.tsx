@@ -24,7 +24,7 @@ export const Header: React.FC = () => {
     <header className="mb-8 relative flex flex-col gap-6">
       <div className="flex items-center justify-between gap-4">
         <h1 className="text-4xl font-bold tracking-tight text-library-green">
-          eReader Cover Formatter
+          Kindle Cover Formatter
         </h1>
 
         <button
@@ -40,7 +40,7 @@ export const Header: React.FC = () => {
         <div className="max-w-2xl space-y-2">
           <p className="text-lg text-library-green/80 leading-relaxed italic font-serif">
             Format and optimize your images to fit perfectly the screen of your
-            favorite eReader.
+            favorite eReader device.
           </p>
           <p className="text-sm text-library-green/40 font-sans">
             Check the instructions to see how to add your new covers to your
