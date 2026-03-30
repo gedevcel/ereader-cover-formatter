@@ -1,73 +1,66 @@
-# React + TypeScript + Vite
+# Kindle Cover Formatter
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Kindle Cover Formatter](./public/metadata-image.png)
 
-Currently, two official plugins are available:
+A modern, responsive web application designed to help e-reader enthusiasts perfectly format their book cover images. Tailored for various devices, this tool ensures your library looks professional and consistent.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Features
 
-## React Compiler
+-   **Device-Specific Presets**: Select from a range of popular e-reader models (Kindle, Kobo, etc.) to get the exact aspect ratio.
+-   **Custom Dimensions**: Need a specific size? Input your own dimensions for full control.
+-   **Live Preview**: See exactly how your cover will look before downloading.
+-   **Intuitive Drag & Drop**: Easy-to-use interface for uploading and managing your images.
+-   **Premium Aesthetics**: A clean, modern UI built with dark mode in mind and smooth micro-animations.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Built With
 
-## Expanding the ESLint configuration
+-   **[React](https://reactjs.org/)** - For the interactive UI components.
+-   **[TypeScript](https://www.typescriptlang.org/)** - For robust, type-safe development.
+-   **[Vite](https://vitejs.dev/)** - For an ultra-fast build and development experience.
+-   **[Tailwind CSS](https://tailwindcss.com/)** - For modern, responsive styling.
+-   **[Lucide React](https://lucide.dev/)** - For beautiful, consistent iconography.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 📂 Project Structure
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```text
+ereader-cover-formatter/
+├── public/                 # Static assets
+│   ├── metadata-image.png  # Project thumbnail/screenshot
+│   ├── icons.svg           # Shared iconography
+│   └── favicon.svg         # App favicon
+├── src/                    # Source code
+│   ├── components/         # Reusable React components
+│   │   ├── DropZone.tsx    # Image upload and manipulation area
+│   │   ├── Header.tsx      # Main navigation and application header
+│   │   └── Sidebar.tsx     # Configuration and preset settings
+│   ├── App.tsx             # Main application orchestrator
+│   ├── index.css           # Global styles and Tailwind directives
+│   └── main.tsx            # Application entry point
+├── package.json            # Project dependencies and scripts
+└── vite.config.ts          # Vite configuration
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🏁 Getting Started
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1.  **Clone the repository**:
+    ```bash
+    git clone https://github.com/your-username/ereader-cover-formatter.git
+    ```
+2.  **Install dependencies**:
+    ```bash
+    npm install
+    # or
+    pnpm install
+    ```
+3.  **Run the development server**:
+    ```bash
+    npm run dev
+    ```
+4.  **Build for production**:
+    ```bash
+    npm run build
+    ```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+
+*Transform your e-reader library one cover at a time.*
